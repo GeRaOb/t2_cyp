@@ -1,4 +1,5 @@
-const URL = 'https://pokeapi.co/api/v2/pokemon/1/';
+function pok_work(pok_url){
+const URL = pok_url;
 
 fetch(URL)
     .then(res => res.json())
@@ -56,6 +57,47 @@ fetch(URL)
             });
 
         })
+
+        const pok_abl = document.querySelector('.pok_abl')
+        pokemonabl=pokemon.abilities;
+        pokemonabl.forEach((element, index) => {
+            element = pokemonabl[index].ability.name
+            const abl = document.createElement('h7')
+            abl.textContent = element;
+            pok_abl.appendChild(abl)
+            pok_abl.appendChild(document.createElement('br'))
+        });
+
+
     /*console.log(data.name)*/
     })
     .catch(err => console.log(err))
+}
+
+function rec_pok(Newurl , i)
+{
+    
+    URL = Newurl;
+fetch(URL)
+    .then(res => res.json())
+    .then(data =>{
+        pokemon = data;
+        pok_array = pokemon.results;
+        pok_array.forEach((element, index)=>{
+            pok_work(pok_array[index].url)
+        });
+        if(i != 0)
+        {
+            i++;
+            rec_pok(pokemon.next,i);
+        }
+        
+    })
+    .catch(err => console.log(err))
+}
+URL = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=20'
+i = 0;
+rec_pok(URL,0);
+
+
+//https://pokeapi.co/api/v2/pokemon?offset=0&limit=20
