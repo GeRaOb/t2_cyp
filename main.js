@@ -1,3 +1,6 @@
+const pokemonContainer = document.querySelector(".pok-container");
+
+
 function pok_work(pok_url){
 const URL = pok_url;
 
@@ -6,42 +9,45 @@ fetch(URL)
     .then(data => {
         pokemon = data;
         //Guarda el elemento id
-        const pok_id = document.querySelector('.pok_id')
-        const ID = document.createElement('ID')
-        ID.textContent = pokemon.id;
-        pok_id.appendChild(ID)
+        const card = document.createElement('div')
+        card.classList.add('pokemon-block')
 
-        const pok_nom = document.querySelector('.pok_nom')
-        const nom = document.createElement('nom')
+        const ID = document.createElement('p')
+        ID.textContent = `#${pokemon.id.toString().padStart(3, 0)}`
+
+  
+        const nom = document.createElement('p')
         nom.textContent = pokemon.name;
-        pok_nom.appendChild(nom)
 
-        const pok_alt = document.querySelector('.pok_alt')
-        const alt = document.createElement('alt')
+
+  
+        const alt = document.createElement('p')
         alt.textContent = pokemon.height;
-        pok_alt.appendChild(alt)
 
 
-        const pok_pes = document.querySelector('.pok_pes')
-        const pes = document.createElement('pes')
+
+        const pes = document.createElement('p')
         pes.textContent = pokemon.weight;
-        pok_pes.appendChild(pes)
 
-        const pok_typ = document.querySelector('.pok_typ')
+
+        /*
         pokemontype = pokemon.types;
         pokemontype.forEach((element, index) => {
             element = pokemontype[index].type.name;
             const tip = document.createElement('tip')
             tip.textContent = element;
-            pok_typ.appendChild(tip)
+
             pok_typ.appendChild(document.createElement('br'))
         });
+        */
+        const spriteContainer = document.createElement('div')
+        spriteContainer.classList.add('img-container')
 
-        const pok_img = document.querySelector('.pok_img')
-        const img = document.createElement('img')
-        img.src = pokemon.sprites.front_default;
-        pok_img.appendChild(img)
+        const sprite = document.createElement('img')
+        sprite.src = pokemon.sprites.front_default
 
+        spriteContainer.appendChild(sprite)
+        /*
         const URL2 = pokemon.location_area_encounters;
         fetch (URL2)
         .then(res2 => res2.json())
@@ -67,6 +73,14 @@ fetch(URL)
             pok_abl.appendChild(abl)
             pok_abl.appendChild(document.createElement('br'))
         });
+        */
+
+
+        card.appendChild(spriteContainer)
+        card.appendChild(ID)
+        card.appendChild(nom);
+
+        pokemonContainer.appendChild(card);
 
 
     /*console.log(data.name)*/
