@@ -1,4 +1,4 @@
-const pokemonContainer = document.querySelector(".pok-container");
+const pokemonContainer = document.querySelector(".pokemon-container");
 
 
 function pok_work(pok_url){
@@ -8,38 +8,40 @@ fetch(URL)
     .then(res => res.json())
     .then(data => {
         pokemon = data;
-        //Guarda el elemento id
+
+        const flipCard = document.createElement("div");
+        flipCard.classList.add("flip-card");
+
+        const cardContainer = document.createElement("div");
+        cardContainer.classList.add("card-container");
+
+        flipCard.appendChild(cardContainer);
+
+
         const card = document.createElement('div')
         card.classList.add('pokemon-block')
 
+        //RECOLECCION DEL ID
         const ID = document.createElement('p')
         ID.textContent = `#${pokemon.id.toString().padStart(3, 0)}`
-
-  
+ 
+        //RECOLECCION DEL NOMBRE 
         const nom = document.createElement('p')
+        nom.classList.add('name')
         nom.textContent = pokemon.name;
 
 
   
         const alt = document.createElement('p')
-        alt.textContent = pokemon.height;
+        alt.classList.add('titles')
+        alt.textContent = `la altura del pokemon es: ${pokemon.height}ft`;
 
 
 
         const pes = document.createElement('p')
-        pes.textContent = pokemon.weight;
+        pes.classList.add('titles')
+        pes.textContent = `el peso del pokemon es: ${pokemon.weight}lb`;
 
-
-        /*
-        pokemontype = pokemon.types;
-        pokemontype.forEach((element, index) => {
-            element = pokemontype[index].type.name;
-            const tip = document.createElement('tip')
-            tip.textContent = element;
-
-            pok_typ.appendChild(document.createElement('br'))
-        });
-        */
         const spriteContainer = document.createElement('div')
         spriteContainer.classList.add('img-container')
 
@@ -47,40 +49,69 @@ fetch(URL)
         sprite.src = pokemon.sprites.front_default
 
         spriteContainer.appendChild(sprite)
-        /*
+        
+
+        //************PARTE DE ADELANTE**************************
+
+        card.appendChild(spriteContainer)
+        card.appendChild(ID)
+        card.appendChild(nom)
+        card.appendChild(alt)
+        card.appendChild(pes)
+        const tit =document.createElement('p')
+        tit.classList.add('titles')
+        tit.textContent = 'EL/los tipos del pokemon es/son:'
+        card.appendChild(tit);
+        pokemontype = pokemon.types;
+        pokemontype.forEach((element, index) => {
+            element = pokemontype[index].type.name;
+            const tip = document.createElement('p')
+            tip.textContent = element;
+            card.appendChild(tip)
+        });
+        const tit4 =document.createElement('p')
+        tit4.classList.add('titles')
+        tit4.textContent = 'EL/las habilidades del pokemon es/son:'
+        card.appendChild(tit4);
+
+        pokemonabl=pokemon.abilities;
+        pokemonabl.forEach((element, index) => {
+            element = pokemonabl[index].ability.name
+            const abl = document.createElement('p')
+            abl.textContent = element;
+            card.appendChild(abl)
+            //pok_abl.appendChild(document.createElement('br'))
+        });
+
+
+        //********************PARTE DE ATRAS*************************
+        const cardBack = document.createElement("div");
+        cardBack.classList.add("pokemon-block-back");
+        const tit2 =document.createElement('p')
+        tit2.textContent = 'Las locaciones probables es/son: '
+        cardBack.appendChild(tit2)
         const URL2 = pokemon.location_area_encounters;
+        const tit3 =document.createElement('p')
+        tit3.textContent = '|'
         fetch (URL2)
         .then(res2 => res2.json())
         .then(data2 => {
             pokemonlocation = data2;
-            const pok_area = document.querySelector('.pok_area')
             pokemonlocation.forEach((element, index) => {
                 element = pokemonlocation[index].location_area.name;
-                const area = document.createElement('h7')
-                area.innerHTML = element;
-                pok_area.appendChild(area)
-                pok_area.appendChild(document.createElement('br'))
+                const loc = document.createElement('h7')
+                loc.textContent = element;
+                cardBack.appendChild(loc)
             });
 
         })
 
-        const pok_abl = document.querySelector('.pok_abl')
-        pokemonabl=pokemon.abilities;
-        pokemonabl.forEach((element, index) => {
-            element = pokemonabl[index].ability.name
-            const abl = document.createElement('h7')
-            abl.textContent = element;
-            pok_abl.appendChild(abl)
-            pok_abl.appendChild(document.createElement('br'))
-        });
-        */
 
+        
 
-        card.appendChild(spriteContainer)
-        card.appendChild(ID)
-        card.appendChild(nom);
-
-        pokemonContainer.appendChild(card);
+        cardContainer.appendChild(card)
+        cardContainer.appendChild(cardBack)
+        pokemonContainer.appendChild(flipCard)
 
 
     /*console.log(data.name)*/
