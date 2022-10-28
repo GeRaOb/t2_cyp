@@ -40,13 +40,13 @@ function pok_work(pok_url) {
 
             const alt = document.createElement('p')
             alt.classList.add('titles')
-            alt.textContent = `la altura del pokemon es: ${pokemon.height}ft`;
+            alt.textContent = `La altura del pokemon es: ${pokemon.height}ft`;
 
 
 
             const pes = document.createElement('p')
             pes.classList.add('titles')
-            pes.textContent = `el peso del pokemon es: ${pokemon.weight}lb`;
+            pes.textContent = `El peso del pokemon es: ${pokemon.weight}lb`;
 
             const spriteContainer = document.createElement('div')
             spriteContainer.classList.add('img-container')
@@ -66,7 +66,7 @@ function pok_work(pok_url) {
             card.appendChild(pes)
             const tit = document.createElement('p')
             tit.classList.add('titles')
-            tit.textContent = 'EL/los tipos del pokemon es/son:'
+            tit.textContent = 'El/Los tipos del pokemon es/son:'
             card.appendChild(tit);
             pokemontype = pokemon.types;
             pokemontype.forEach((element, index) => {
@@ -77,7 +77,7 @@ function pok_work(pok_url) {
             });
             const tit4 = document.createElement('p')
             tit4.classList.add('titles')
-            tit4.textContent = 'EL/las habilidades del pokemon es/son:'
+            tit4.textContent = 'El/las habilidades del pokemon es/son:'
             card.appendChild(tit4);
 
             pokemonabl = pokemon.abilities;
