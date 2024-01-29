@@ -1,13 +1,5 @@
 # Taller 2 API REST de consulta
 
-# Integrantes
-- Benjamin Alexander Castro Donoso 
-- Germán Alejandro Ramírez Obaid
-- Enzo Maximiliano Valle Mateluna
-- Paulo Andres Hernandez Torreblanca
-
-# Docente
-- Andres Humberto Aguila Gaete
 
 # INTRODUCCION
 En este repositorio yace el código utilizado para la programación de una "API REST" de consultas, enfocado principalmente en Pokémon. Este se encuentra en un lenguaje de programación llamado JavaScript. 
